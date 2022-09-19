@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgresql:
+    image: postgres
+    hostname: "pgconnection"
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: "test"
+      POSTGRES_USER: "test"
+      POSTGRES_PASSWORD: "test"
