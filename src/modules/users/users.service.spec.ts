@@ -35,5 +35,11 @@ describe('UsersService', () => {
 
       expect(response.id).not.toBeNull();
     });
+
+    it('Should find all users', async () => {
+      const response = await service.findAll();
+
+      expect(response.length).toBeGreaterThan(0);
+    });
   });
 });
