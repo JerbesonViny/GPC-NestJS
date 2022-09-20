@@ -18,7 +18,7 @@ dotenv.config();
       host: process.env.TYPEORM_HOST,
       port: parseInt(process.env.TYPEORM_PORT),
       synchronize: true,
-      logging: true,
+      logging: false,
       entities: [UserEntity],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
