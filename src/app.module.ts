@@ -7,7 +7,6 @@ import { UsersModule } from './modules/users/users.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 dotenv.config();
-console.log(+process.env.TYPEORM_PORT);
 @Module({
   imports: [
     TypeOrmModule.forRoot({
