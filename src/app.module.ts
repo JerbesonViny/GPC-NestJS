@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UsersModule } from './modules/users/users.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { UserEntity } from './modules/users/entities/user.entity';
 
 dotenv.config();
 @Module({
@@ -18,7 +19,7 @@ dotenv.config();
       port: parseInt(process.env.TYPEORM_PORT),
       synchronize: true,
       logging: true,
-      entities: [],
+      entities: [UserEntity],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -29,5 +30,6 @@ dotenv.config();
   ],
   controllers: [],
   providers: [],
+  exports: [],
 })
 export class AppModule {}
