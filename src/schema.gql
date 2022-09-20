@@ -16,19 +16,19 @@ scalar DateTime
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): UserDTO!
-  removeUser(id: Int!): UserDTO!
+  removeUser(id: ID!): UserDTO!
   updateUser(updateUserInput: UpdateUserInput!): UserDTO!
 }
 
 type Query {
-  user(id: Int!): UserDTO!
+  user(id: ID!): UserDTO!
   users: [UserDTO!]!
 }
 
 input UpdateUserInput {
   email: String
   firstname: String
-  id: Int!
+  id: ID!
   lastname: String
   password: String
 }
