@@ -1,11 +1,27 @@
 version: '3'
 
 services:
+  app:
+    build: .
+    image: nestjs-graphql
+    container_name: app
+    ports:
+      - 3000:3000
+    environment:
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_HOST=pgconnection
+      - TYPEORM_USERNAME=test
+      - TYPEORM_PASSWORD=test
+      - TYPEORM_DATABASE=test
+      - TYPEORM_PORT=5432
+    links:
+      - "postgresql"
+
   postgresql:
     image: postgres
     hostname: "pgconnection"
     ports:
-      - "5433:5432"
+      - "5432:5432"
     environment:
       POSTGRES_DB: "test"
       POSTGRES_USER: "test"
