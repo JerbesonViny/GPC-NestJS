@@ -11,5 +11,5 @@ export async function compare(
   compared: string,
   hashed: string,
 ): Promise<boolean> {
-  return await bcrypt.compare(compared, hashed);
+  return bcrypt.compare(compared, hashed);
 }

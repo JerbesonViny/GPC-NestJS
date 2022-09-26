@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthDTO {
+  access_token: String!
+}
+
+input AuthUserInput {
+  email: String!
+  password: String!
+}
+
 input CreateUserInput {
   email: String!
   firstname: String!
@@ -21,6 +30,7 @@ type Mutation {
 }
 
 type Query {
+  login(authUserInput: AuthUserInput!): AuthDTO!
   user(id: ID!): UserDTO!
   users: [UserDTO!]!
 }

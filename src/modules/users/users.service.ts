@@ -6,6 +6,11 @@ import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { UserEntity } from './entities/user.entity';
 
+type UserServiceParams = {
+  email?: string;
+  id?: string;
+};
+
 @Injectable()
 export class UsersService {
   constructor(
@@ -28,10 +33,11 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: string) {
+  findOne(params: UserServiceParams) {
     return this.usersRepository.findOne({
       where: {
-        id,
+        id: params?.id,
+        email: params?.email,
       },
     });
   }
