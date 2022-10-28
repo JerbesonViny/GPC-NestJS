@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
 import { EventsService } from './events.service';
 import { EventDTO } from './dto/event.dto';
 import { CreateEventInput } from './dto/create-event.input';
@@ -17,8 +17,8 @@ export class EventsResolver {
   }
 
   @Query(() => [EventDTO], { name: 'events' })
-  findAll() {
-    return this.eventsService.findAll();
+  findAll(@Args('userId', { type: () => ID, nullable: true }) userId: string) {
+    return this.eventsService.findAll({ userId });
   }
 
   @Query(() => EventDTO, { name: 'event' })

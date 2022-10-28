@@ -5,6 +5,10 @@ import { CreateEventInput } from './dto/create-event.input';
 import { UpdateEventInput } from './dto/update-event.input';
 import { EventEntity } from './entities/event.entity';
 
+type SearchParams = {
+  userId?: string;
+};
+
 @Injectable()
 export class EventsService {
   constructor(
@@ -26,11 +30,15 @@ export class EventsService {
       destination_longitude: createEventInput.destination_longitude,
     });
 
-    return await this.eventRepository.save(event);
+    return this.eventRepository.save(event);
   }
 
-  findAll() {
-    return `This action returns all events`;
+  async findAll({ userId }: SearchParams) {
+    return this.eventRepository.find({
+      where: {
+        userId,
+      },
+    });
   }
 
   findOne(id: number) {
