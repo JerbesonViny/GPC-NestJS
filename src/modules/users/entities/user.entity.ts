@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../../base/entities/base.entity';
+import { EventEntity } from '../../events/entities/event.entity';
 
 @Entity()
 export class UserEntity extends BaseEntity {
@@ -14,4 +15,7 @@ export class UserEntity extends BaseEntity {
 
   @Column()
   password: string;
+
+  @OneToMany(() => EventEntity, (event) => event.user)
+  events: EventEntity[];
 }

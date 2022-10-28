@@ -11,6 +11,19 @@ input AuthUserInput {
   password: String!
 }
 
+input CreateEventInput {
+  destination_latitude: Float!
+  destination_longitude: Float!
+  intensity: String!
+  meeting: String!
+  origin_latitude: Float!
+  origin_longitude: Float!
+  title: String!
+  type_bike: String!
+  type_route: String!
+  userId: ID!
+}
+
 input CreateUserInput {
   email: String!
   firstname: String!
@@ -23,16 +36,51 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type EventDTO {
+  createdAt: DateTime!
+  deletedAt: DateTime
+  destination_latitude: Float!
+  destination_longitude: Float!
+  id: String!
+  intensity: String!
+  meeting: String!
+  origin_latitude: Float!
+  origin_longitude: Float!
+  title: String!
+  type_bike: String!
+  type_route: String!
+  updatedAt: DateTime!
+  user: UserDTO!
+}
+
 type Mutation {
+  createEvent(createEventInput: CreateEventInput!): EventDTO!
   createUser(createUserInput: CreateUserInput!): UserDTO!
+  removeEvent(id: Int!): EventDTO!
   removeUser(id: ID!): UserDTO!
+  updateEvent(updateEventInput: UpdateEventInput!): EventDTO!
   updateUser(updateUserInput: UpdateUserInput!): UserDTO!
 }
 
 type Query {
+  event(id: Int!): EventDTO!
+  events: [EventDTO!]!
   login(authUserInput: AuthUserInput!): AuthDTO!
   user(id: ID!): UserDTO!
   users: [UserDTO!]!
+}
+
+input UpdateEventInput {
+  destination_latitude: Float!
+  destination_longitude: Float!
+  id: Int!
+  intensity: String!
+  meeting: String!
+  origin_latitude: Float!
+  origin_longitude: Float!
+  title: String!
+  type_bike: String!
+  type_route: String!
 }
 
 input UpdateUserInput {

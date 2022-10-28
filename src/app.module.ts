@@ -7,6 +7,8 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { UserEntity } from './modules/users/entities/user.entity';
+import { EventsModule } from './modules/events/events.module';
+import { EventEntity } from './modules/events/entities/event.entity';
 
 dotenv.config();
 @Module({
@@ -20,7 +22,7 @@ dotenv.config();
       port: parseInt(process.env.TYPEORM_PORT),
       synchronize: true,
       logging: false,
-      entities: [UserEntity],
+      entities: [UserEntity, EventEntity],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
@@ -29,7 +31,8 @@ dotenv.config();
     }),
     UsersModule,
     AuthModule,
+    EventsModule,
   ],
-  exports: [UsersModule],
+  exports: [UsersModule, EventsModule],
 })
 export class AppModule {}
