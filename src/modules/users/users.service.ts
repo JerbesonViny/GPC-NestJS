@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { encrypt } from '../../utils/secury';
 import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
 import { UserEntity } from './entities/user.entity';
 
 type UserServiceParams = {
@@ -26,7 +25,7 @@ export class UsersService {
       password: await encrypt(createUserInput.password),
     });
 
-    return await this.usersRepository.save(user);
+    return this.usersRepository.save(user);
   }
 
   findAll() {
@@ -40,13 +39,5 @@ export class UsersService {
         email: params?.email,
       },
     });
-  }
-
-  update(id: string, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: string) {
-    return `This action removes a #${id} user`;
   }
 }

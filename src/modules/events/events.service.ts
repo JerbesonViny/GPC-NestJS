@@ -51,9 +51,9 @@ export class EventsService {
   }
 
   async update({ id, ...updateEventInput }: UpdateEventInput) {
-    const updated = await this.eventRepository.update(id, updateEventInput);
+    await this.eventRepository.update(id, updateEventInput);
 
-    return await this.eventRepository.findOne({
+    return this.eventRepository.findOne({
       where: {
         id,
       },
