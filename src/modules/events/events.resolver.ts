@@ -28,7 +28,7 @@ export class EventsResolver {
 
   @Mutation(() => EventDTO)
   updateEvent(@Args('updateEventInput') updateEventInput: UpdateEventInput) {
-    return this.eventsService.update(updateEventInput.id, updateEventInput);
+    return this.eventsService.update(updateEventInput);
   }
 
   @Mutation(() => Boolean)
