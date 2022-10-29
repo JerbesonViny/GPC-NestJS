@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ID } from '@nestjs/graphql';
 import { EventsService } from './events.service';
 import { EventDTO } from './dto/event.dto';
 import { CreateEventInput } from './dto/create-event.input';
@@ -31,8 +31,8 @@ export class EventsResolver {
     return this.eventsService.update(updateEventInput.id, updateEventInput);
   }
 
-  @Mutation(() => EventDTO)
-  removeEvent(@Args('id', { type: () => Int }) id: number) {
-    return this.eventsService.remove(id);
+  @Mutation(() => Boolean)
+  removeEvent(@Args('id', { type: () => ID }) id: string) {
+    return this.eventsService.remove({ id });
   }
 }

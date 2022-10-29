@@ -54,7 +54,9 @@ export class EventsService {
     return `This action updates a #${id} event`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} event`;
+  async remove({ id }: SearchParams) {
+    const removed = await this.eventRepository.delete({ id });
+
+    return removed.affected;
   }
 }
