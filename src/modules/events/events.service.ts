@@ -6,6 +6,7 @@ import { UpdateEventInput } from './dto/update-event.input';
 import { EventEntity } from './entities/event.entity';
 
 type SearchParams = {
+  id?: string;
   userId?: string;
 };
 
@@ -41,8 +42,12 @@ export class EventsService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} event`;
+  findOne({ id }: SearchParams) {
+    return this.eventRepository.findOne({
+      where: {
+        id,
+      },
+    });
   }
 
   update(id: number, updateEventInput: UpdateEventInput) {

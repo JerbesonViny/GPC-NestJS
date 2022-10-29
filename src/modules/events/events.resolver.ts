@@ -22,8 +22,8 @@ export class EventsResolver {
   }
 
   @Query(() => EventDTO, { name: 'event' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.eventsService.findOne(id);
+  findOne(@Args('id', { type: () => ID }) id: string) {
+    return this.eventsService.findOne({ id });
   }
 
   @Mutation(() => EventDTO)
